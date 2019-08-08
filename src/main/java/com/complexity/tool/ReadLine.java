@@ -20,6 +20,7 @@ public class ReadLine {
 		String filePath = f.getPath();
 		String fileExtension = filePath.substring(filePath.indexOf('.') + 1);
 		SizeFactorValues sizeFactorValues = new SizeFactorValues();
+		ComplexityConstants complexityConstants = new ComplexityConstants();
 
 		if (fileExtension.equals("java")) {
 			System.out.println("This is a java file");
@@ -28,11 +29,15 @@ public class ReadLine {
 		}
 		int count = 0;
 		while ((line = bufferedReader.readLine()) != null) {
-
+			
+            if(complexityConstants.isExcludeLine(line)) {
+            	continue;
+            }
+			
 			List<String> wordArrayList = Arrays.asList(line.split("\\s+"));
 			List<String> dottedList = new ArrayList<String>();
 			for (String word : wordArrayList) {
-				if(word.contains("\\.")) {
+				if(word.contains(".")) {
 					dottedList = Arrays.asList(word.split("\\."));
 				}			
 				count += sizeFactorValues.complexitySizeFactorValues(word, fileExtension);

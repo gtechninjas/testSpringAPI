@@ -35,9 +35,7 @@ public class SizeFactorValues {
 			return 2;
 		} else if (complexityConstants.isDereference(constant) && (!fileType.equals("cpp"))) {
 			return 2;
-		} else if (complexityConstants.isNonValueOperator(constant)){
-			return 0;
-		}
+		} 
 		else {
 			return 1;
 		}

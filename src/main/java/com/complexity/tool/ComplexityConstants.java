@@ -14,8 +14,8 @@ public class ComplexityConstants {
 	public static String REFERENCE = "&";
 	public static String DEREFERENCE = "*";
 	
-	public static String NON_VALUE_VAR[] = {"public", "static", "class", "return","else","try"};
-    public static String EXTRACT_VAR[] = {"{", "}","(", ")", "[", "]", ";"};
+	public static String EXCLUDE_LINE_VAR[] = {"public", "static", "class", "return","else","try", "include", "import"};
+    public static String EXTRACT_VAR[] = {"{", "}","(", ")", "[", "]", ";", "\"", "\'"};
 	
 	public Boolean isArithmetic(String constant) {
 		for(String operator : ARITHMETIC_OPERATORS) {
@@ -101,9 +101,9 @@ public class ComplexityConstants {
 		}
 		return false;
 	}
-	public Boolean isNonValueOperator(String constant) {
-		for(String operator : NON_VALUE_VAR) {
-			if(operator.equals(constant)) {
+	public Boolean isExcludeLine(String line) {
+		for(String operator : EXCLUDE_LINE_VAR) {
+			if(line.contains("\\"+operator)) {
 				return true;
 			}
 		}
@@ -123,5 +123,6 @@ public class ComplexityConstants {
 		return null;
 	}
 	
+    
 	
 }
